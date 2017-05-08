@@ -3,6 +3,8 @@ if [ $# -eq 0 ]; then
 else
     local al
     if al=$(git config --get "alias.$1"); then
+        builtin print -r "${run_help_orig_cmd:-git} $1 is a git-alias for $al"
+        [[ $al == !* ]] && return
         1=${al%% *}
     fi
     man git-$1
